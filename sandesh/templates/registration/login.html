@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    {%load staticfiles%}
+    <style media="screen">
+    .split {
+position: fixed;
+z-index: 1;
+top: 0;
+overflow-x: hidden;
+padding-top: 20px;
+border: 2px solid black;
+}
+
+/* Control the left side */
+.left {
+  height: 100%;
+  width: 40%;
+left: 0;
+background-color: #111;
+background-image: url({%static 'holi.jpg'%});
+background-repeat:no-repeat;
+background-size:cover;
+background-position: fixed;
+/* opacity: 0.6; */
+/* filter: alpha(opacity=60); */
+}
+
+/* Control the right side */
+.right {
+  height: 100%;
+  width: 60%;
+right: 0;
+background-image: url({%static 'lblue.jpg'%});
+background-repeat: no-repeat;
+background-size: cover;
+}
+
+/* If you want the content centered horizontally and vertically */
+.centered {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+text-align: center;
+}
+
+/* Style the image inside the centered container, if needed */
+.centered img {
+width: 150px;
+border-radius: 50%;
+}
+/* popup background css */
+#popup_bg{
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: none;
+}
+/* main popup css */
+#popup_main{
+  position:fixed;
+  left:40%;
+  top: 50%;
+  width: 1000px;
+  height: 600px;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin-left: -400px;
+  margin-top: -250px;
+  background-color: white;
+}
+  /* close symbol 'x' css */
+#closepopup{
+  position: absolute;
+  top: 1.5%;
+  left:96.5%;
+  height: 5px;
+  width: 5px;
+  color: red;
+  cursor: pointer;
+}
+/* signup popup background */
+.holiimg{
+  background-image: url({%static 'holi.jpg'%});
+  background-repeat: no-repeat;
+}
+/* login popup background css */
+#log_popup_bg{
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: none;
+}
+/* login popup main css */
+#login_popup_main{
+  position:fixed;
+  left:60%;
+  top: 60%;
+  width: 700px;
+  height: 300px;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin-left: -400px;
+  margin-top: -250px;
+  background-color: white;
+}
+/* login popup background */
+.blueimg{
+  background-image: url({%static 'black.png'%});
+  background-repeat: no-repeat;
+}
+</style>
+    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <title><img src="{%static 'logo_b.jpg'%}" width="30" height="30" class="d-inline-block align-top"/>Kurukshetra</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </head>
+  <body style="border-radius:50px;">
+    <div class="split left">
+  <div class="centered">
+    <img src="{%static 'log_gb.jpg'%}" alt="Kurukshetra">
+    <h2>Welcome To The Kurukshetra</h2>
+    <p>The platform to say everyone 'Hola!'</p>
+  </div>
+</div>
+
+<div class="split right">
+  <!-- Image and text -->
+  <!-- navbar program -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" style="border-radius:10px;">
+    <a class="navbar-brand" href="#">
+      <img src="{%static 'logo_b.jpg'%}" width="30" height="30" class="d-inline-block align-top" alt="">
+      Kurukshetra
+    </a>
+    <!-- navbar toggle button program -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <form class="ml-auto" method="post" >
+      {%csrf_token%}
+      <div class="navbar-nav">
+        <!-- {%for forms in form%}
+        {{forms.errors}}
+        <input class="nav-item nav-link active form-control" type="text" name="" placeholder="username" style="margin-right:10px;">
+        <input class="nav-item nav-link active form-control" type="{{forms.name}}" name="" placeholder="{{forms.label}}" style="margin-right:10px;">
+        {%endfor%} -->
+        <input type="submit" name="login" class="btn btn-success form-control" value="Login" style="padding:0px 55px;">
+      </div>
+    </form>
+
+  </div>
+</nav>
+<form class="" method="post" id="">
+  {%csrf_token%}
+  <div class="centered">
+    <img src="{%static 'log_gb.jpg'%}" class="float-left" alt="kurukshetra" style="padding-bottom:10px;font-size:1.2em;">
+    <h2 class="text-center">See what's happening in the world right Now</h2>
+    <br><br><br>
+    <button type="button" name="signup" class="btn btn-danger form-control" style="font-weight:bold;" onclick="openpopup(); relocate_home();">Signup</button>
+    <p><strong>If you are not Registered!<a href="{%url 'login'%}">hello</a></strong></p>
+    <button type="button" name="login" class="btn btn-success form-control" style="font-weight:bold;" onclick="logopenpopup();">Login</button>
+  </div>
+  <!-- this is for login popup we used diffent css for this -->
+  <div class="" id="log_popup_bg">
+    <div class="blueimg" id="login_popup_main">
+      <div class="" id="closepopup" onclick="logclosepopup()" style="color:white;">
+        <h4>X</h4>
+        <!-- the program for login useing django inbuilt login form -->
+      </div>
+      <br><br><br>
+      <form class="container-fluid centered"method="post" style="padding:50px 50px;">
+        {%csrf_token%}
+        {%for forms in form%}
+        {{forms.errors}}
+        <input class="form-control" type="{{forms.name}}" name="" placeholder="{{forms.label}}" style="margin-right:10px;">
+        {%endfor%}
+      </form>
+    </div>
+  </div>
+</form>
+<!-- this is for signup popup program 'popup_bg' for main means except popup tab total screen effects and 'popup_main' is the effects for main popup tab -->
+<!-- closepopup effects for the close symbol -->
+<!--onlick=closepopup() is for calling the closepopup function of javascripts  -->
+<div id="popup_bg" >
+<div id="popup_main" class="holiimg">
+<div class="" id="closepopup" onclick="closepopup()">
+  <h3>X</h3>
+</div><br><br><br>
+<form class="container centered" method="post">
+  <h4>{{formn.as_p}}</h4>
+  {%csrf_token%}
+  <input type="submit" name="" value="Welcome In To The Family" class="btn btn-success btn-lg">
+</form>
+</div>
+</div>
+</div>
+  </body>
+  <script type="text/javascript">
+  // JavaScript for signup popup
+    var popi=document.getElementById("popup_bg");
+    function closepopup(){
+      popi.style.display="none";
+    }
+    function openpopup(){
+      popi.style.display="block";
+    }
+// javascript for login popup screen
+    var log_pop=document.getElementById("log_popup_bg");
+    function logclosepopup(){
+      log_pop.style.display="none";
+    }
+    function logopenpopup(){
+      log_pop.style.display="block";
+
+      function relocate_home()
+{
+     location.href = "{%url 'login'%}";
+}
+    }
+  </script>
+</html>
